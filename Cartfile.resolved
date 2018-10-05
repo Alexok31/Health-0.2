@@ -1,0 +1,4 @@
+github "Alamofire/Alamofire" "2.0.0"
+github "SwiftyJSON/SwiftyJSON" "2.4.0"
+github "WenchaoD/FSCalendar" "2.7.9"
+github "luispadron/UICircularProgressRing" "v4.1.0"

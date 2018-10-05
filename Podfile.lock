@@ -1,0 +1,20 @@
+PODS:
+  - FSCalendar (2.7.9)
+  - UICircularProgressRing (2.1.0)
+
+DEPENDENCIES:
+  - FSCalendar
+  - UICircularProgressRing
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - FSCalendar
+    - UICircularProgressRing
+
+SPEC CHECKSUMS:
+  FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
+  UICircularProgressRing: 01b8f67bbaca7e3a83ccfa67630fe059a51211d1
+
+PODFILE CHECKSUM: b1432d4c497cf17da0ce3a776f7c8d984898d354
+
+COCOAPODS: 1.5.2
