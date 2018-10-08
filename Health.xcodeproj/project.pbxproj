@@ -16,6 +16,7 @@
 		4265423D216655FF00DDD188 /* PersistentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4265423C216655FF00DDD188 /* PersistentManager.swift */; };
 		42654240216657D900DDD188 /* Pedometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4265423F216657D900DDD188 /* Pedometer.swift */; };
 		4265424221666A6E00DDD188 /* diagram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4265424121666A6E00DDD188 /* diagram.swift */; };
+		42ACA474216BDB1D003598EF /* SwipeAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42ACA473216BDB1D003598EF /* SwipeAnimations.swift */; };
 		42C56488216790BF001B85D6 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C56487216790BF001B85D6 /* CalendarView.swift */; };
 		42F0013B2166BECB00A87C91 /* DashbordHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F0013A2166BECB00A87C91 /* DashbordHelper.swift */; };
 		42F0013D2166BF9F00A87C91 /* PhysiologicalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F0013C2166BF9F00A87C91 /* PhysiologicalData.swift */; };
@@ -34,6 +35,7 @@
 		4265423C216655FF00DDD188 /* PersistentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentManager.swift; sourceTree = "<group>"; };
 		4265423F216657D900DDD188 /* Pedometer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pedometer.swift; sourceTree = "<group>"; };
 		4265424121666A6E00DDD188 /* diagram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = diagram.swift; sourceTree = "<group>"; };
+		42ACA473216BDB1D003598EF /* SwipeAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeAnimations.swift; sourceTree = "<group>"; };
 		42C56487216790BF001B85D6 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		42F0013A2166BECB00A87C91 /* DashbordHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashbordHelper.swift; sourceTree = "<group>"; };
 		42F0013C2166BF9F00A87C91 /* PhysiologicalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysiologicalData.swift; sourceTree = "<group>"; };
@@ -86,8 +88,8 @@
 			children = (
 				42654227216655DC00DDD188 /* AppDelegate.swift */,
 				42C5648621678516001B85D6 /* View */,
-				42F0013A2166BECB00A87C91 /* DashbordHelper.swift */,
-				42C56487216790BF001B85D6 /* CalendarView.swift */,
+				42ACA477216BE4F6003598EF /* DashbordService */,
+				42ACA472216B8600003598EF /*  Calendar */,
 				42F0013E2166C08600A87C91 /* DataModel */,
 				4265423E2166560400DDD188 /* CoreData */,
 				4265422B216655DC00DDD188 /* Main.storyboard */,
@@ -107,6 +109,23 @@
 				4265423C216655FF00DDD188 /* PersistentManager.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		42ACA472216B8600003598EF /*  Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				42C56487216790BF001B85D6 /* CalendarView.swift */,
+			);
+			path = " Calendar";
+			sourceTree = "<group>";
+		};
+		42ACA477216BE4F6003598EF /* DashbordService */ = {
+			isa = PBXGroup;
+			children = (
+				42ACA473216BDB1D003598EF /* SwipeAnimations.swift */,
+				42F0013A2166BECB00A87C91 /* DashbordHelper.swift */,
+			);
+			path = DashbordService;
 			sourceTree = "<group>";
 		};
 		42C5648621678516001B85D6 /* View */ = {
@@ -252,6 +271,7 @@
 				42654230216655DC00DDD188 /* Health.xcdatamodeld in Sources */,
 				4265424221666A6E00DDD188 /* diagram.swift in Sources */,
 				4265423D216655FF00DDD188 /* PersistentManager.swift in Sources */,
+				42ACA474216BDB1D003598EF /* SwipeAnimations.swift in Sources */,
 				42C56488216790BF001B85D6 /* CalendarView.swift in Sources */,
 				42F0013D2166BF9F00A87C91 /* PhysiologicalData.swift in Sources */,
 				42654228216655DC00DDD188 /* AppDelegate.swift in Sources */,

@@ -8,17 +8,9 @@
 
 import Foundation
 
-class PhysiologicalDataa {
-    
-    let runningSteps = 5000
-    let walkingSteps = 1100
-    let lowerPressure = 260
-    let upperPressure = 120
-    
-}
 
-struct DateOfPhysiologicalData {
-    var date : Data?
+struct TimePhysiologicalData {
+    var dateString : String?
     var physiologicalData : PhysiologicalData
 }
 
@@ -27,5 +19,4 @@ struct PhysiologicalData {
     var walkingSteps : Int?
     var lowerPressure : Int?
     var upperPressure : Int?
-    
 }

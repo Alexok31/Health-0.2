@@ -11,9 +11,6 @@ import FSCalendar
 
 extension DashbordController : FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance {
     
-    func weakCalendar() {
-        calendarView.setScope(FSCalendarScope.week, animated: true)
-    }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         
@@ -21,14 +18,15 @@ extension DashbordController : FSCalendarDataSource, FSCalendarDelegate, FSCalen
         self.walkingProgress.setProgress(to: 0, duration: 0)
         self.runningDay.setProgress(to: 0, duration: 0)
         self.walkingDay.setProgress(to: 0, duration: 0)
+      
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             if self.meteringDate == self.formatter.string(from: date) {
-                self.runningSteps = 4000
+                self.runningSteps = 400
                 self.walkingSteps = 2000
-                self.lowerPressure = 60
-                self.upperPressure = 120
-               self.dailyWalkingSteps(steps: self.walkingSteps)
+                self.lowerPressure = 80
+                self.upperPressure = 149
+                self.dailyWalkingSteps(steps: self.walkingSteps)
                 self.dailyRunningSteps(steps: self.runningSteps)
                 self.setupLabel()
             } else {
@@ -43,5 +41,4 @@ extension DashbordController : FSCalendarDataSource, FSCalendarDelegate, FSCalen
         }
      
     }
-
 }

@@ -26,13 +26,30 @@ class DashbordController: UIViewController {
     @IBOutlet weak var lowerPressureLabel: UILabel!
     @IBOutlet weak var upperPressureLabel: UILabel!
     
+    @IBOutlet weak var calendarBottom: NSLayoutConstraint!
+    @IBOutlet weak var topBarConstraint: NSLayoutConstraint!
+    @IBOutlet weak var runningTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var runningRightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var walkingTopConstraint: NSLayoutConstraint!
+    
+    
+    @IBAction func movingConstraint(_ sender: UIPanGestureRecognizer) {
+       
+       
+        animationMoveConstraint(sender, constraint: walkingTopConstraint, startConstant: 355, endConstant: 10, divider: 4)
+        animationMoveConstraint(sender, constraint: runningTopConstraint, startConstant: 355, endConstant: 10, divider: 4)
+        animationMoveConstraint(sender, constraint: runningRightConstraint, startConstant: 20, endConstant: -60, divider: 20)
+    
+        animationCalendarView(sender)
+    }
+    
     let dashbordHelper = DashbordHelper()
     
     var runningSteps = 700
     var walkingSteps = 5000
     var lowerPressure = 60
     var upperPressure = 120
-    let meteringDate = "2018-10-06"
+    let meteringDate = "2018-10-07"
     
     let formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -40,10 +57,11 @@ class DashbordController: UIViewController {
         return formatter
         }()
     
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLabel()
-        weakCalendar()
+        calendarView.scope = .week
         setupNavigationBar()
     }
     
@@ -53,7 +71,7 @@ class DashbordController: UIViewController {
     }
     
     func setupNavigationBar(){
-        navigationController?.navigationBar.barTintColor = UIColor(displayP3Red: 233/255, green: 183/255, blue: 62/255, alpha: 1)
+        navigationController?.navigationBar.barTintColor = UIColor(displayP3Red: 105/255, green: 192/255, blue: 232/255, alpha: 1)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
     }
@@ -72,6 +90,7 @@ class DashbordController: UIViewController {
             let percent = CGFloat(walkingPercentage)
             self.runningProgress.startAngle = CGFloat((Double(walkingPercentage) * 3.6) - 90)
             self.runningDay.startAngle = CGFloat((Double(walkingPercentage) * 3.6) - 90)
+            
             self.walkingProgress.setProgress(to: percent, duration: 1)
             self.walkingDay.setProgress(to: percent, duration: 1)
            
@@ -85,7 +104,7 @@ class DashbordController: UIViewController {
             let percent = CGFloat(runningSteps)
             
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.runningProgress.setProgress(to: percent, duration: 1)
                 self.runningDay.setProgress(to: percent, duration: 1)
             }
