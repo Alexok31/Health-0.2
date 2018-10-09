@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import FSCalendar
+import UICircularProgressRing
 
 extension DashbordController {
     
@@ -20,37 +21,60 @@ extension DashbordController {
                 //swipe UP
                 if calendarBottom.constant < 0 {
                     UIView.animate(withDuration: 0.5, animations: {
-                        self.calendarBottom.constant -= translation / 10
-                        self.topBarConstraint.constant += translation / 30
+                        self.calendarBottom.constant -= translation / 3
+                        self.topBarConstraint.constant += translation / 15
                         self.view.layoutIfNeeded()
                     })
                 }
-                if calendarBottom.constant > -20 {
+                if calendarBottom.constant > -50 {
                     self.calendarView.setScope(.month, animated: true)
                 }
                 
             } else { //swipe Down
                 if calendarBottom.constant > -162 {
                     UIView.animate(withDuration: 0.5, animations: {
-                        self.calendarView.setScope(.week, animated: true)
-                        self.calendarBottom.constant -= translation / 10
-                        self.topBarConstraint.constant += translation / 30
+                        self.calendarBottom.constant -= translation / 3
+                        self.topBarConstraint.constant += translation / 15
                         self.view.layoutIfNeeded()
                     })
                 }
-            }
+                
+            } //end (values constrant)
         } else if sender.state == .ended {
             if calendarBottom.constant > -10 {
                 UIView.animate(withDuration: 0.5, animations: {
                     self.calendarBottom.constant = 0
+                    self.walkingTopConstraint.constant = 10
+                    self.runningTopConstraint.constant = 10
+                    self.runningRightConstraint.constant = -60
                     self.topBarConstraint.constant = -60
+                    self.progressTopConstraint.constant = -80
+                    self.numberStepsTopConstraint.constant = 10
+                    self.numberOfStepsWalking.alpha = 0
+                    self.walkingTitle.alpha = 0
+                    self.numberOfStepsRunning.alpha = 0
+                    self.runningTitle.alpha = 0
+                    self.runningProgress.alpha = 0
+                    self.pressureView.alpha = 0
                     self.view.layoutIfNeeded()
                 })
                 
-            } else {
+            } else { //begin (values constrant)
                 UIView.animate(withDuration: 0.5, animations: {
+                    self.calendarView.setScope(.week, animated: true)
                     self.calendarBottom.constant = -162
+                    self.walkingTopConstraint.constant = 355
+                    self.runningTopConstraint.constant = 355
+                    self.runningRightConstraint.constant = 20
+                    self.progressTopConstraint.constant = 65
+                    self.numberStepsTopConstraint.constant = 153
                     self.topBarConstraint.constant = 0
+                    self.numberOfStepsWalking.alpha = 1
+                    self.walkingTitle.alpha = 1
+                    self.numberOfStepsRunning.alpha = 1
+                    self.runningTitle.alpha = 1
+                    self.runningProgress.alpha = 1
+                    self.pressureView.alpha = 1
                     self.view.layoutIfNeeded()
                 })
             }
@@ -72,23 +96,39 @@ extension DashbordController {
             } else { //swipe Down
                 if constraint.constant < startConstant {
                     UIView.animate(withDuration: 0.5, animations: {
-                        constraint.constant += translation / 2
+                        constraint.constant += translation / divider
                         self.view.layoutIfNeeded()
                     })
                 }
             }
-        } else if sender.state == .ended {
-            if constraint.constant > endConstant {
-                UIView.animate(withDuration: 0.5, animations: {
-                    constraint.constant = startConstant
-                    self.view.layoutIfNeeded()
-                })
-                
-            } else {
-                UIView.animate(withDuration: 0.5, animations: {
-                    constraint.constant = endConstant
-                    self.view.layoutIfNeeded()
-                })
+        }
+    }
+    
+    func animationFadeOutLabel(_ sender: UIPanGestureRecognizer, labelfFade1: UILabel, labelfFade2: UILabel, labelfFade3: UILabel, labelfFade4: UILabel, constraint: NSLayoutConstraint, startConstant: CGFloat, endConstant: CGFloat, viewFade1: UIView, viewFade2: UIView)  {
+        if sender.state == .began || sender.state == .changed {
+            let translation = sender.translation(in: self.view).y
+            
+            if translation < 0 {
+                //swipe UP
+                if constraint.constant < 200 {
+                    UIView.animate(withDuration: 0.5, animations: {
+                        labelfFade1.alpha -= 0.04
+                        labelfFade2.alpha -= 0.04
+                        labelfFade3.alpha -= 0.04
+                        labelfFade4.alpha -= 0.04
+                        viewFade1.alpha -= 0.02
+                        viewFade2.alpha -= 0.04
+                        self.view.layoutIfNeeded()
+                    })
+                }
+            } else { //swipe Down
+                if constraint.constant > 200 {
+                    UIView.animate(withDuration: 0.5, animations: {
+                        viewFade1.alpha += 0.02
+                        viewFade2.alpha += 0.04
+                        self.view.layoutIfNeeded()
+                    })
+                }
             }
         }
     }

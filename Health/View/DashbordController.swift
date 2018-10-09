@@ -17,28 +17,38 @@ class DashbordController: UIViewController {
     
     @IBOutlet weak var walkingDay: UICircularProgressRingView!
     @IBOutlet weak var runningDay: UICircularProgressRingView!
-    
+
     @IBOutlet weak var calendarView: FSCalendar!
+    @IBOutlet weak var pressureView: UIView!
+    
     
     @IBOutlet weak var numderOfStepsPerDay: UILabel!
     @IBOutlet weak var numberOfStepsWalking: UILabel!
+    @IBOutlet weak var walkingTitle: UILabel!
     @IBOutlet weak var numberOfStepsRunning: UILabel!
+    @IBOutlet weak var runningTitle: UILabel!
     @IBOutlet weak var lowerPressureLabel: UILabel!
     @IBOutlet weak var upperPressureLabel: UILabel!
     
+
     @IBOutlet weak var calendarBottom: NSLayoutConstraint!
     @IBOutlet weak var topBarConstraint: NSLayoutConstraint!
     @IBOutlet weak var runningTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var runningRightConstraint: NSLayoutConstraint!
     @IBOutlet weak var walkingTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var progressTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var numberStepsTopConstraint: NSLayoutConstraint!
     
     
     @IBAction func movingConstraint(_ sender: UIPanGestureRecognizer) {
        
        
-        animationMoveConstraint(sender, constraint: walkingTopConstraint, startConstant: 355, endConstant: 10, divider: 4)
-        animationMoveConstraint(sender, constraint: runningTopConstraint, startConstant: 355, endConstant: 10, divider: 4)
-        animationMoveConstraint(sender, constraint: runningRightConstraint, startConstant: 20, endConstant: -60, divider: 20)
+        animationMoveConstraint(sender, constraint: walkingTopConstraint, startConstant: 355, endConstant: 10, divider: 2)
+        animationMoveConstraint(sender, constraint: runningTopConstraint, startConstant: 355, endConstant: 10, divider: 2)
+        animationMoveConstraint(sender, constraint: runningRightConstraint, startConstant: 20, endConstant: -60, divider: 10)
+        animationMoveConstraint(sender, constraint: numberStepsTopConstraint, startConstant: 153, endConstant: 15, divider: 10)
+        animationMoveConstraint(sender, constraint: progressTopConstraint, startConstant: 65, endConstant: -80, divider: 10)
+        animationFadeOutLabel(sender, labelfFade1: numberOfStepsWalking, labelfFade2: walkingTitle, labelfFade3: numberOfStepsRunning, labelfFade4: runningTitle, constraint: walkingTopConstraint, startConstant: 355, endConstant: 10, viewFade1: runningProgress, viewFade2: pressureView)
     
         animationCalendarView(sender)
     }
