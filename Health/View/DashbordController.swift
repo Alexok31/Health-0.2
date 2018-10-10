@@ -9,9 +9,11 @@
 import UIKit
 import UICircularProgressRing
 import FSCalendar
+import ScrollableGraphView
+import AAInfographics
 
 class DashbordController: UIViewController {
-
+    
     @IBOutlet weak var walkingProgress: UICircularProgressRingView!
     @IBOutlet weak var runningProgress: UICircularProgressRingView!
     
@@ -21,7 +23,8 @@ class DashbordController: UIViewController {
     @IBOutlet weak var calendarView: FSCalendar!
     @IBOutlet weak var pressureView: UIView!
     
-    
+    @IBOutlet weak var dayliChart: ScrollableGraphView!
+   
     @IBOutlet weak var numderOfStepsPerDay: UILabel!
     @IBOutlet weak var numberOfStepsWalking: UILabel!
     @IBOutlet weak var walkingTitle: UILabel!
@@ -41,25 +44,23 @@ class DashbordController: UIViewController {
     
     
     @IBAction func movingConstraint(_ sender: UIPanGestureRecognizer) {
-       
-       
         animationMoveConstraint(sender, constraint: walkingTopConstraint, startConstant: 355, endConstant: 10, divider: 2)
         animationMoveConstraint(sender, constraint: runningTopConstraint, startConstant: 355, endConstant: 10, divider: 2)
         animationMoveConstraint(sender, constraint: runningRightConstraint, startConstant: 20, endConstant: -60, divider: 10)
         animationMoveConstraint(sender, constraint: numberStepsTopConstraint, startConstant: 153, endConstant: 15, divider: 10)
         animationMoveConstraint(sender, constraint: progressTopConstraint, startConstant: 65, endConstant: -80, divider: 10)
-        animationFadeOutLabel(sender, labelfFade1: numberOfStepsWalking, labelfFade2: walkingTitle, labelfFade3: numberOfStepsRunning, labelfFade4: runningTitle, constraint: walkingTopConstraint, startConstant: 355, endConstant: 10, viewFade1: runningProgress, viewFade2: pressureView)
-    
+        animationFadeOutLabel(sender, labelfFade1: numberOfStepsWalking, labelfFade2: walkingTitle, labelfFade3: numberOfStepsRunning, labelfFade4: runningTitle, constraint: walkingTopConstraint, startConstant: 355, endConstant: 10, viewFade1: runningProgress, viewFade2: dayliChart)
         animationCalendarView(sender)
     }
     
+    
     let dashbordHelper = DashbordHelper()
     
+    let meteringDate = "2018-10-07"
     var runningSteps = 700
     var walkingSteps = 5000
     var lowerPressure = 60
     var upperPressure = 120
-    let meteringDate = "2018-10-07"
     
     let formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -67,12 +68,12 @@ class DashbordController: UIViewController {
         return formatter
         }()
     
-  
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLabel()
         calendarView.scope = .week
         setupNavigationBar()
+        setupDaylyChart()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -94,6 +95,13 @@ class DashbordController: UIViewController {
         upperPressureLabel.text = "\(upperPressure)"
     }
     
+    func setupDaylyChart() {
+        let walkingColor = UIColor(displayP3Red: 106/255, green: 192/255, blue: 231/255, alpha: 1)
+        let runningColor = UIColor(displayP3Red: 160/255, green: 227/255, blue: 252/255, alpha: 1)
+        initDayliChartView("running", color: runningColor)
+        initDayliChartView("walking", color: walkingColor)
+    }
+    
 
     func dailyWalkingSteps(steps: Int) {
         dashbordHelper.dailyRateInPercent(steps: steps) { (walkingPercentage) in
@@ -103,9 +111,6 @@ class DashbordController: UIViewController {
             
             self.walkingProgress.setProgress(to: percent, duration: 1)
             self.walkingDay.setProgress(to: percent, duration: 1)
-           
-            
-          
         }
     }
     

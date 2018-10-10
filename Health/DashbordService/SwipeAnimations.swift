@@ -19,9 +19,9 @@ extension DashbordController {
             
             if translation < 0 {
                 //swipe UP
-                if calendarBottom.constant < 0 {
+                if calendarBottom.constant < -15 {
                     UIView.animate(withDuration: 0.5, animations: {
-                        self.calendarBottom.constant -= translation / 3
+                        self.calendarBottom.constant -= translation / 5
                         self.topBarConstraint.constant += translation / 15
                         self.view.layoutIfNeeded()
                     })
@@ -33,7 +33,7 @@ extension DashbordController {
             } else { //swipe Down
                 if calendarBottom.constant > -162 {
                     UIView.animate(withDuration: 0.5, animations: {
-                        self.calendarBottom.constant -= translation / 3
+                        self.calendarBottom.constant -= translation / 5
                         self.topBarConstraint.constant += translation / 15
                         self.view.layoutIfNeeded()
                     })
@@ -41,7 +41,7 @@ extension DashbordController {
                 
             } //end (values constrant)
         } else if sender.state == .ended {
-            if calendarBottom.constant > -10 {
+            if calendarBottom.constant > -15 {
                 UIView.animate(withDuration: 0.5, animations: {
                     self.calendarBottom.constant = 0
                     self.walkingTopConstraint.constant = 10
@@ -55,7 +55,7 @@ extension DashbordController {
                     self.numberOfStepsRunning.alpha = 0
                     self.runningTitle.alpha = 0
                     self.runningProgress.alpha = 0
-                    self.pressureView.alpha = 0
+                    self.dayliChart.alpha = 1
                     self.view.layoutIfNeeded()
                 })
                 
@@ -74,7 +74,7 @@ extension DashbordController {
                     self.numberOfStepsRunning.alpha = 1
                     self.runningTitle.alpha = 1
                     self.runningProgress.alpha = 1
-                    self.pressureView.alpha = 1
+                    self.dayliChart.alpha = 0
                     self.view.layoutIfNeeded()
                 })
             }
@@ -117,7 +117,7 @@ extension DashbordController {
                         labelfFade3.alpha -= 0.04
                         labelfFade4.alpha -= 0.04
                         viewFade1.alpha -= 0.02
-                        viewFade2.alpha -= 0.04
+                        viewFade2.alpha += 0.04
                         self.view.layoutIfNeeded()
                     })
                 }
@@ -125,7 +125,7 @@ extension DashbordController {
                 if constraint.constant > 200 {
                     UIView.animate(withDuration: 0.5, animations: {
                         viewFade1.alpha += 0.02
-                        viewFade2.alpha += 0.04
+                        viewFade2.alpha -= 0.04
                         self.view.layoutIfNeeded()
                     })
                 }

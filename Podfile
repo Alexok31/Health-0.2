@@ -9,6 +9,7 @@ target 'Health' do
 
 pod 'UICircularProgressRing'
 pod 'FSCalendar'
+pod 'ScrollableGraphView'
 
 end
 

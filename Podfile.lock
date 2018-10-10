@@ -1,20 +1,28 @@
 PODS:
+  - AAInfographics (2.0.4)
   - FSCalendar (2.7.9)
+  - ScrollableGraphView (4.0.6)
   - UICircularProgressRing (2.1.0)
 
 DEPENDENCIES:
+  - AAInfographics
   - FSCalendar
+  - ScrollableGraphView
   - UICircularProgressRing
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - AAInfographics
     - FSCalendar
+    - ScrollableGraphView
     - UICircularProgressRing
 
 SPEC CHECKSUMS:
+  AAInfographics: 10f87e06fc007a0adbb05de020e4a2fe3119f8de
   FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
+  ScrollableGraphView: 4af35d4ea9ecdec665d34a74da51da161ddff8ac
   UICircularProgressRing: 01b8f67bbaca7e3a83ccfa67630fe059a51211d1
 
-PODFILE CHECKSUM: b1432d4c497cf17da0ce3a776f7c8d984898d354
+PODFILE CHECKSUM: efe0a1661734597204c40ba3fef538e9bde86fec
 
 COCOAPODS: 1.5.2

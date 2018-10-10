@@ -16,8 +16,10 @@
 		4265423D216655FF00DDD188 /* PersistentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4265423C216655FF00DDD188 /* PersistentManager.swift */; };
 		42654240216657D900DDD188 /* Pedometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4265423F216657D900DDD188 /* Pedometer.swift */; };
 		4265424221666A6E00DDD188 /* diagram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4265424121666A6E00DDD188 /* diagram.swift */; };
+		42991ED4216EAB0F0075CFBA /* StepsChartHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42991ED3216EAB0F0075CFBA /* StepsChartHelper.swift */; };
 		42ACA474216BDB1D003598EF /* SwipeAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42ACA473216BDB1D003598EF /* SwipeAnimations.swift */; };
 		42C56488216790BF001B85D6 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C56487216790BF001B85D6 /* CalendarView.swift */; };
+		42CE8D02216E2DA10035A7B1 /* DailyChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CE8D01216E2DA10035A7B1 /* DailyChartView.swift */; };
 		42F0013B2166BECB00A87C91 /* DashbordHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F0013A2166BECB00A87C91 /* DashbordHelper.swift */; };
 		42F0013D2166BF9F00A87C91 /* PhysiologicalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F0013C2166BF9F00A87C91 /* PhysiologicalData.swift */; };
 		5357902CAAFDE595AE3F9182 /* Pods_Health.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B699324CF7032EAED8ED25ED /* Pods_Health.framework */; };
@@ -35,8 +37,10 @@
 		4265423C216655FF00DDD188 /* PersistentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentManager.swift; sourceTree = "<group>"; };
 		4265423F216657D900DDD188 /* Pedometer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pedometer.swift; sourceTree = "<group>"; };
 		4265424121666A6E00DDD188 /* diagram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = diagram.swift; sourceTree = "<group>"; };
+		42991ED3216EAB0F0075CFBA /* StepsChartHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsChartHelper.swift; sourceTree = "<group>"; };
 		42ACA473216BDB1D003598EF /* SwipeAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeAnimations.swift; sourceTree = "<group>"; };
 		42C56487216790BF001B85D6 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		42CE8D01216E2DA10035A7B1 /* DailyChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyChartView.swift; sourceTree = "<group>"; };
 		42F0013A2166BECB00A87C91 /* DashbordHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashbordHelper.swift; sourceTree = "<group>"; };
 		42F0013C2166BF9F00A87C91 /* PhysiologicalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysiologicalData.swift; sourceTree = "<group>"; };
 		8C1939097F8511AFB13C71C7 /* Pods-Health.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Health.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Health/Pods-Health.debug.xcconfig"; sourceTree = "<group>"; };
@@ -88,8 +92,9 @@
 			children = (
 				42654227216655DC00DDD188 /* AppDelegate.swift */,
 				42C5648621678516001B85D6 /* View */,
-				42ACA477216BE4F6003598EF /* DashbordService */,
 				42ACA472216B8600003598EF /*  Calendar */,
+				42991ED2216EA8180075CFBA /* StepsChart */,
+				42ACA477216BE4F6003598EF /* DashbordService */,
 				42F0013E2166C08600A87C91 /* DataModel */,
 				4265423E2166560400DDD188 /* CoreData */,
 				4265422B216655DC00DDD188 /* Main.storyboard */,
@@ -109,6 +114,15 @@
 				4265423C216655FF00DDD188 /* PersistentManager.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		42991ED2216EA8180075CFBA /* StepsChart */ = {
+			isa = PBXGroup;
+			children = (
+				42CE8D01216E2DA10035A7B1 /* DailyChartView.swift */,
+				42991ED3216EAB0F0075CFBA /* StepsChartHelper.swift */,
+			);
+			path = StepsChart;
 			sourceTree = "<group>";
 		};
 		42ACA472216B8600003598EF /*  Calendar */ = {
@@ -246,12 +260,16 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Health/Pods-Health-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AAInfographics/AAInfographics.framework",
 				"${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/ScrollableGraphView/ScrollableGraphView.framework",
 				"${BUILT_PRODUCTS_DIR}/UICircularProgressRing/UICircularProgressRing.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AAInfographics.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ScrollableGraphView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICircularProgressRing.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,10 +286,12 @@
 			files = (
 				42654240216657D900DDD188 /* Pedometer.swift in Sources */,
 				4265422A216655DC00DDD188 /* DashbordController.swift in Sources */,
+				42991ED4216EAB0F0075CFBA /* StepsChartHelper.swift in Sources */,
 				42654230216655DC00DDD188 /* Health.xcdatamodeld in Sources */,
 				4265424221666A6E00DDD188 /* diagram.swift in Sources */,
 				4265423D216655FF00DDD188 /* PersistentManager.swift in Sources */,
 				42ACA474216BDB1D003598EF /* SwipeAnimations.swift in Sources */,
+				42CE8D02216E2DA10035A7B1 /* DailyChartView.swift in Sources */,
 				42C56488216790BF001B85D6 /* CalendarView.swift in Sources */,
 				42F0013D2166BF9F00A87C91 /* PhysiologicalData.swift in Sources */,
 				42654228216655DC00DDD188 /* AppDelegate.swift in Sources */,

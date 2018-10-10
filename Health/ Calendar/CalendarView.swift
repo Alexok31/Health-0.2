@@ -19,7 +19,6 @@ extension DashbordController : FSCalendarDataSource, FSCalendarDelegate, FSCalen
         self.runningDay.setProgress(to: 0, duration: 0)
         self.walkingDay.setProgress(to: 0, duration: 0)
       
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             if self.meteringDate == self.formatter.string(from: date) {
                 self.runningSteps = 400
