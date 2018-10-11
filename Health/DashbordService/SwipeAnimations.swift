@@ -19,7 +19,7 @@ extension DashbordController {
             
             if translation < 0 {
                 //swipe UP
-                if calendarBottom.constant < -15 {
+                if calendarBottom.constant < -40 {
                     UIView.animate(withDuration: 0.5, animations: {
                         self.calendarBottom.constant -= translation / 5
                         self.topBarConstraint.constant += translation / 15
@@ -41,7 +41,7 @@ extension DashbordController {
                 
             } //end (values constrant)
         } else if sender.state == .ended {
-            if calendarBottom.constant > -15 {
+            if calendarBottom.constant > -40 {
                 UIView.animate(withDuration: 0.5, animations: {
                     self.calendarBottom.constant = 0
                     self.walkingTopConstraint.constant = 10

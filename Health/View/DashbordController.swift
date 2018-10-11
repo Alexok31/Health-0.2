@@ -10,7 +10,6 @@ import UIKit
 import UICircularProgressRing
 import FSCalendar
 import ScrollableGraphView
-import AAInfographics
 
 class DashbordController: UIViewController {
     
@@ -44,10 +43,10 @@ class DashbordController: UIViewController {
     
     
     @IBAction func movingConstraint(_ sender: UIPanGestureRecognizer) {
-        animationMoveConstraint(sender, constraint: walkingTopConstraint, startConstant: 355, endConstant: 10, divider: 2)
-        animationMoveConstraint(sender, constraint: runningTopConstraint, startConstant: 355, endConstant: 10, divider: 2)
+        animationMoveConstraint(sender, constraint: walkingTopConstraint, startConstant: 355, endConstant: 60, divider: 2)
+        animationMoveConstraint(sender, constraint: runningTopConstraint, startConstant: 355, endConstant: 60, divider: 2)
         animationMoveConstraint(sender, constraint: runningRightConstraint, startConstant: 20, endConstant: -60, divider: 10)
-        animationMoveConstraint(sender, constraint: numberStepsTopConstraint, startConstant: 153, endConstant: 15, divider: 10)
+        animationMoveConstraint(sender, constraint: numberStepsTopConstraint, startConstant: 153, endConstant: 50, divider: 10)
         animationMoveConstraint(sender, constraint: progressTopConstraint, startConstant: 65, endConstant: -80, divider: 10)
         animationFadeOutLabel(sender, labelfFade1: numberOfStepsWalking, labelfFade2: walkingTitle, labelfFade3: numberOfStepsRunning, labelfFade4: runningTitle, constraint: walkingTopConstraint, startConstant: 355, endConstant: 10, viewFade1: runningProgress, viewFade2: dayliChart)
         animationCalendarView(sender)
