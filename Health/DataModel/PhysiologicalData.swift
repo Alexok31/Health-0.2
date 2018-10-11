@@ -8,15 +8,20 @@
 
 import Foundation
 
+struct StepsData {
+    var timePhysiologicalData : [TimePhysiologicalData]
+}
 
 struct TimePhysiologicalData {
-    var dateString : String?
-    var physiologicalData : PhysiologicalData
+    var physiologicalData: PhysiologicalData
 }
 
 struct PhysiologicalData {
-    var runningSteps : Int?
-    var walkingSteps : Int?
-    var lowerPressure : Int?
-    var upperPressure : Int?
+    var dateString: String?
+    var runningSteps: Int?
+    var walkingSteps: Int?
+    var lowerPressure: Int?
+    var upperPressure: Int?
+    var dayWalkingSteps: [Int]
+    var dayRunningSteps: [Int]
 }

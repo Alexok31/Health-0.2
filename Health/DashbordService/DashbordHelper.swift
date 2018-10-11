@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class DashbordHelper {
     
     func dailyRateInPercent(steps: Int, completion: @escaping (Int) -> ()) {

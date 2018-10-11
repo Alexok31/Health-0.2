@@ -6,10 +6,7 @@
 //  Copyright © 2018 Александр Харченко. All rights reserved.
 //
 
-import Foundation
 import UIKit
-import FSCalendar
-import UICircularProgressRing
 
 extension DashbordController {
     
@@ -106,7 +103,7 @@ extension DashbordController {
         }
     }
     
-    func animationFadeOutLabel(_ sender: UIPanGestureRecognizer, labelfFade1: UILabel, labelfFade2: UILabel, labelfFade3: UILabel, labelfFade4: UILabel, constraint: NSLayoutConstraint, startConstant: CGFloat, endConstant: CGFloat, viewFade1: UIView, viewFade2: UIView)  {
+    func animationFadeOutLabel(_ sender: UIPanGestureRecognizer, labelfFade1: UILabel, labelfFade2: UILabel, labelfFade3: UILabel, labelfFade4: UILabel, constraint: NSLayoutConstraint, startConstant: CGFloat, endConstant: CGFloat, viewFade1: UIView, viewFade2: UIView, viewFade3: UIView)  {
         if sender.state == .began || sender.state == .changed {
             let translation = sender.translation(in: self.view).y
             
@@ -119,6 +116,7 @@ extension DashbordController {
                         labelfFade3.alpha -= 0.04
                         labelfFade4.alpha -= 0.04
                         viewFade1.alpha -= 0.02
+                        viewFade3.alpha -= 0.05
                         viewFade2.alpha += 0.04
                         self.view.layoutIfNeeded()
                     })
@@ -127,6 +125,7 @@ extension DashbordController {
                 if constraint.constant > 200 {
                     UIView.animate(withDuration: 0.5, animations: {
                         viewFade1.alpha += 0.02
+                        viewFade3.alpha += 0.05
                         viewFade2.alpha -= 0.04
                         self.view.layoutIfNeeded()
                     })

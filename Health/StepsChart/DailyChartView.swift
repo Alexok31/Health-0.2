@@ -29,7 +29,6 @@ extension DashbordController: ScrollableGraphViewDataSource {
         referenceLines.referenceLineLabelColor = UIColor(displayP3Red: 55/255, green: 55/255, blue: 55/255, alpha: 1)
         referenceLines.dataPointLabelColor = UIColor(displayP3Red: 55/255, green: 55/255, blue: 55/255, alpha: 1)
         referenceLines.shouldAddLabelsToIntermediateReferenceLines = true
-        
         // Add everything
         dayliChart.addPlot(plot: barPlot)
         dayliChart.addReferenceLines(referenceLines: referenceLines)
@@ -38,10 +37,10 @@ extension DashbordController: ScrollableGraphViewDataSource {
     func value(forPlot plot: Plot, atIndex pointIndex: Int) -> Double {
         switch(plot.identifier) {
         case "running":
-            var array = StepsChartHelper().sumArray()
+            var array = stepsChartData.sumArray()
             return Double(array[pointIndex])
         case "walking":
-            var array = StepsChartHelper().dayWalkingStepsArray()
+            var array = stepsChartData.dayWalkingSteps
             return Double(array[pointIndex])
         default:
             return 0
@@ -49,8 +48,7 @@ extension DashbordController: ScrollableGraphViewDataSource {
     }
     
     func label(atIndex pointIndex: Int) -> String {
-        let hoursInDay = ["12am", "", "", "3am", "", "", "6am", "", "", "9am", "", "", "12pm", "", "", "3pm", "", "", "6pm", "", "", "9pm", "", "11pm" ]
-        return "\(hoursInDay[pointIndex])"
+        return "\(stepsChartData.hoursInDay[pointIndex])"
     }
     
     func numberOfPoints() -> Int {

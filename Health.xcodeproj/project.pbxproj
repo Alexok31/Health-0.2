@@ -15,8 +15,8 @@
 		42654235216655DE00DDD188 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42654233216655DE00DDD188 /* LaunchScreen.storyboard */; };
 		4265423D216655FF00DDD188 /* PersistentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4265423C216655FF00DDD188 /* PersistentManager.swift */; };
 		42654240216657D900DDD188 /* Pedometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4265423F216657D900DDD188 /* Pedometer.swift */; };
-		4265424221666A6E00DDD188 /* diagram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4265424121666A6E00DDD188 /* diagram.swift */; };
-		42991ED4216EAB0F0075CFBA /* StepsChartHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42991ED3216EAB0F0075CFBA /* StepsChartHelper.swift */; };
+		42991ED4216EAB0F0075CFBA /* StepsChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42991ED3216EAB0F0075CFBA /* StepsChartData.swift */; };
+		42991ED6216FD45B0075CFBA /* ActivityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42991ED5216FD45B0075CFBA /* ActivityData.swift */; };
 		42ACA474216BDB1D003598EF /* SwipeAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42ACA473216BDB1D003598EF /* SwipeAnimations.swift */; };
 		42C56488216790BF001B85D6 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C56487216790BF001B85D6 /* CalendarView.swift */; };
 		42CE8D02216E2DA10035A7B1 /* DailyChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CE8D01216E2DA10035A7B1 /* DailyChartView.swift */; };
@@ -36,8 +36,8 @@
 		42654236216655DE00DDD188 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4265423C216655FF00DDD188 /* PersistentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentManager.swift; sourceTree = "<group>"; };
 		4265423F216657D900DDD188 /* Pedometer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pedometer.swift; sourceTree = "<group>"; };
-		4265424121666A6E00DDD188 /* diagram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = diagram.swift; sourceTree = "<group>"; };
-		42991ED3216EAB0F0075CFBA /* StepsChartHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsChartHelper.swift; sourceTree = "<group>"; };
+		42991ED3216EAB0F0075CFBA /* StepsChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsChartData.swift; sourceTree = "<group>"; };
+		42991ED5216FD45B0075CFBA /* ActivityData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityData.swift; sourceTree = "<group>"; };
 		42ACA473216BDB1D003598EF /* SwipeAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeAnimations.swift; sourceTree = "<group>"; };
 		42C56487216790BF001B85D6 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		42CE8D01216E2DA10035A7B1 /* DailyChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyChartView.swift; sourceTree = "<group>"; };
@@ -99,7 +99,6 @@
 				4265423E2166560400DDD188 /* CoreData */,
 				4265422B216655DC00DDD188 /* Main.storyboard */,
 				4265423F216657D900DDD188 /* Pedometer.swift */,
-				4265424121666A6E00DDD188 /* diagram.swift */,
 				42654231216655DE00DDD188 /* Assets.xcassets */,
 				42654233216655DE00DDD188 /* LaunchScreen.storyboard */,
 				42654236216655DE00DDD188 /* Info.plist */,
@@ -120,7 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				42CE8D01216E2DA10035A7B1 /* DailyChartView.swift */,
-				42991ED3216EAB0F0075CFBA /* StepsChartHelper.swift */,
+				42991ED3216EAB0F0075CFBA /* StepsChartData.swift */,
 			);
 			path = StepsChart;
 			sourceTree = "<group>";
@@ -153,6 +152,7 @@
 		42F0013E2166C08600A87C91 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				42991ED5216FD45B0075CFBA /* ActivityData.swift */,
 				42F0013C2166BF9F00A87C91 /* PhysiologicalData.swift */,
 			);
 			path = DataModel;
@@ -284,9 +284,9 @@
 			files = (
 				42654240216657D900DDD188 /* Pedometer.swift in Sources */,
 				4265422A216655DC00DDD188 /* DashbordController.swift in Sources */,
-				42991ED4216EAB0F0075CFBA /* StepsChartHelper.swift in Sources */,
+				42991ED6216FD45B0075CFBA /* ActivityData.swift in Sources */,
+				42991ED4216EAB0F0075CFBA /* StepsChartData.swift in Sources */,
 				42654230216655DC00DDD188 /* Health.xcdatamodeld in Sources */,
-				4265424221666A6E00DDD188 /* diagram.swift in Sources */,
 				4265423D216655FF00DDD188 /* PersistentManager.swift in Sources */,
 				42ACA474216BDB1D003598EF /* SwipeAnimations.swift in Sources */,
 				42CE8D02216E2DA10035A7B1 /* DailyChartView.swift in Sources */,

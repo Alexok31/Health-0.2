@@ -48,18 +48,12 @@ class DashbordController: UIViewController {
         animationMoveConstraint(sender, constraint: runningRightConstraint, startConstant: 20, endConstant: -60, divider: 10)
         animationMoveConstraint(sender, constraint: numberStepsTopConstraint, startConstant: 153, endConstant: 50, divider: 10)
         animationMoveConstraint(sender, constraint: progressTopConstraint, startConstant: 65, endConstant: -80, divider: 10)
-        animationFadeOutLabel(sender, labelfFade1: numberOfStepsWalking, labelfFade2: walkingTitle, labelfFade3: numberOfStepsRunning, labelfFade4: runningTitle, constraint: walkingTopConstraint, startConstant: 355, endConstant: 10, viewFade1: runningProgress, viewFade2: dayliChart)
+        animationFadeOutLabel(sender, labelfFade1: numberOfStepsWalking, labelfFade2: walkingTitle, labelfFade3: numberOfStepsRunning, labelfFade4: runningTitle, constraint: walkingTopConstraint, startConstant: 355, endConstant: 10, viewFade1: runningProgress, viewFade2: dayliChart, viewFade3: pressureView)
         animationCalendarView(sender)
     }
     
-    
     let dashbordHelper = DashbordHelper()
-    
-    let meteringDate = "2018-10-07"
-    var runningSteps = 700
-    var walkingSteps = 5000
-    var lowerPressure = 60
-    var upperPressure = 120
+    let stepsChartData = StepsChartData()
     
     let formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -67,17 +61,27 @@ class DashbordController: UIViewController {
         return formatter
         }()
     
+   
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupLabel()
         calendarView.scope = .week
         setupNavigationBar()
         setupDaylyChart()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    func setupTodayData() {
+       // let todayDate = formatter.string(from: calendarView.today!)
+        let runningSteps = 2050
+        let walkingSteps = 5024
+        let lowerPressure = 60
+        let upperPressure = 120
+        setupLabel(walkingSteps: walkingSteps, runningSteps: runningSteps, lowerPressure: lowerPressure, upperPressure: upperPressure)
         dailyWalkingSteps(steps: walkingSteps)
         dailyRunningSteps(steps: runningSteps)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        setupTodayData()
     }
     
     func setupNavigationBar(){
@@ -86,7 +90,7 @@ class DashbordController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = true
     }
     
-    func setupLabel() {
+    func setupLabel(walkingSteps : Int, runningSteps: Int, lowerPressure: Int, upperPressure: Int) {
         numderOfStepsPerDay.text = "\(walkingSteps + runningSteps)"
         numberOfStepsWalking.text = "\(walkingSteps)"
         numberOfStepsRunning.text = "\(runningSteps)"
@@ -101,7 +105,6 @@ class DashbordController: UIViewController {
         initDayliChartView("walking", color: walkingColor)
     }
     
-
     func dailyWalkingSteps(steps: Int) {
         dashbordHelper.dailyRateInPercent(steps: steps) { (walkingPercentage) in
             let percent = CGFloat(walkingPercentage)
@@ -116,7 +119,6 @@ class DashbordController: UIViewController {
     func dailyRunningSteps(steps: Int) {
         dashbordHelper.dailyRateInPercent(steps: steps) { (runningSteps) in
             let percent = CGFloat(runningSteps)
-            
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.runningProgress.setProgress(to: percent, duration: 1)
