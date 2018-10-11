@@ -55,6 +55,7 @@ extension DashbordController {
                     self.numberOfStepsRunning.alpha = 0
                     self.runningTitle.alpha = 0
                     self.runningProgress.alpha = 0
+                    self.pressureView.alpha = 0
                     self.dayliChart.alpha = 1
                     self.view.layoutIfNeeded()
                 })
@@ -74,6 +75,7 @@ extension DashbordController {
                     self.numberOfStepsRunning.alpha = 1
                     self.runningTitle.alpha = 1
                     self.runningProgress.alpha = 1
+                     self.pressureView.alpha = 1
                     self.dayliChart.alpha = 0
                     self.view.layoutIfNeeded()
                 })
