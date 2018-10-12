@@ -24,4 +24,8 @@ struct PhysiologicalData {
     var upperPressure: Int?
     var dayWalkingSteps: [Int]
     var dayRunningSteps: [Int]
+    var caloriesBurnedBar: Int
+    var coefficientBar: Double?
+    var wakingTimeBar: String?
+    var sleepTimeBar: String?
 }

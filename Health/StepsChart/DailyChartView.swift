@@ -9,7 +9,7 @@
 import Foundation
 import ScrollableGraphView
 
-extension DashbordController: ScrollableGraphViewDataSource {
+extension StepsController: ScrollableGraphViewDataSource {
     
     func initDayliChartView(_ identifier: String, color: UIColor){
         dayliChart.dataSource = self

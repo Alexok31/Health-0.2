@@ -11,7 +11,7 @@ import UICircularProgressRing
 import FSCalendar
 import ScrollableGraphView
 
-class DashbordController: UIViewController {
+class StepsController: UIViewController {
     
     @IBOutlet weak var walkingProgress: UICircularProgressRingView!
     @IBOutlet weak var runningProgress: UICircularProgressRingView!
@@ -24,6 +24,7 @@ class DashbordController: UIViewController {
     
     @IBOutlet weak var dayliChart: ScrollableGraphView!
    
+    @IBOutlet weak var topBarMenu: UICollectionView!
     @IBOutlet weak var numderOfStepsPerDay: UILabel!
     @IBOutlet weak var numberOfStepsWalking: UILabel!
     @IBOutlet weak var walkingTitle: UILabel!
@@ -32,7 +33,13 @@ class DashbordController: UIViewController {
     @IBOutlet weak var lowerPressureLabel: UILabel!
     @IBOutlet weak var upperPressureLabel: UILabel!
     
-
+    @IBOutlet weak var stepsBar: UILabel!
+    @IBOutlet weak var caloriesBurnedBar: UILabel!
+    @IBOutlet weak var coefficientBar: UILabel!
+    @IBOutlet weak var wakingTimeBar: UILabel!
+    @IBOutlet weak var sleepTimeBar: UILabel!
+    @IBOutlet weak var barMenuView: UIView!
+    
     @IBOutlet weak var calendarBottom: NSLayoutConstraint!
     @IBOutlet weak var topBarConstraint: NSLayoutConstraint!
     @IBOutlet weak var runningTopConstraint: NSLayoutConstraint!
@@ -41,18 +48,17 @@ class DashbordController: UIViewController {
     @IBOutlet weak var progressTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var numberStepsTopConstraint: NSLayoutConstraint!
     
-    
     @IBAction func movingConstraint(_ sender: UIPanGestureRecognizer) {
         animationMoveConstraint(sender, constraint: walkingTopConstraint, startConstant: 355, endConstant: 60, divider: 2)
         animationMoveConstraint(sender, constraint: runningTopConstraint, startConstant: 355, endConstant: 60, divider: 2)
         animationMoveConstraint(sender, constraint: runningRightConstraint, startConstant: 20, endConstant: -60, divider: 10)
-        animationMoveConstraint(sender, constraint: numberStepsTopConstraint, startConstant: 153, endConstant: 50, divider: 10)
-        animationMoveConstraint(sender, constraint: progressTopConstraint, startConstant: 65, endConstant: -80, divider: 10)
-        animationFadeOutLabel(sender, labelfFade1: numberOfStepsWalking, labelfFade2: walkingTitle, labelfFade3: numberOfStepsRunning, labelfFade4: runningTitle, constraint: walkingTopConstraint, startConstant: 355, endConstant: 10, viewFade1: runningProgress, viewFade2: dayliChart, viewFade3: pressureView)
+        animationMoveConstraint(sender, constraint: numberStepsTopConstraint, startConstant: 168, endConstant: 50, divider: 10)
+        animationMoveConstraint(sender, constraint: progressTopConstraint, startConstant: 80, endConstant: -80, divider: 10)
+        animationFadeOutLabel(sender, labelfFade1: numberOfStepsWalking, labelfFade2: walkingTitle, labelfFade3: numberOfStepsRunning, labelfFade4: runningTitle, constraint: walkingTopConstraint, startConstant: 355, endConstant: 50, viewFade1: runningProgress, viewFade2: dayliChart, viewFade3: pressureView, viewFade4: barMenuView)
         animationCalendarView(sender)
     }
     
-    let dashbordHelper = DashbordHelper()
+    let stepsHelper = StepsHelper()
     let stepsChartData = StepsChartData()
     
     let formatter: DateFormatter = {
@@ -75,7 +81,11 @@ class DashbordController: UIViewController {
         let walkingSteps = 5024
         let lowerPressure = 60
         let upperPressure = 120
-        setupLabel(walkingSteps: walkingSteps, runningSteps: runningSteps, lowerPressure: lowerPressure, upperPressure: upperPressure)
+        let caloriesBurnedBar = 11670
+        let coefficientBar = 8.2
+        let wakingTimeBar = "6:30"
+        let sleepTimeBar = "7:53"
+        setupLabel(walkingSteps: walkingSteps, runningSteps: runningSteps, lowerPressure: lowerPressure, upperPressure: upperPressure, caloriesBurned: caloriesBurnedBar, coefficient: coefficientBar, wakingTime: wakingTimeBar, sleepTime: sleepTimeBar)
         dailyWalkingSteps(steps: walkingSteps)
         dailyRunningSteps(steps: runningSteps)
     }
@@ -90,12 +100,18 @@ class DashbordController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = true
     }
     
-    func setupLabel(walkingSteps : Int, runningSteps: Int, lowerPressure: Int, upperPressure: Int) {
+    func setupLabel(walkingSteps : Int, runningSteps: Int, lowerPressure: Int, upperPressure: Int, caloriesBurned: Int, coefficient: Double, wakingTime: String, sleepTime: String) {
         numderOfStepsPerDay.text = "\(walkingSteps + runningSteps)"
         numberOfStepsWalking.text = "\(walkingSteps)"
         numberOfStepsRunning.text = "\(runningSteps)"
         lowerPressureLabel.text = "\(lowerPressure)"
         upperPressureLabel.text = "\(upperPressure)"
+        stepsBar.text = "\(walkingSteps + runningSteps)"
+        caloriesBurnedBar.text = "\(caloriesBurned)"
+        coefficientBar.text = "\(coefficient)"
+        wakingTimeBar.text = wakingTime
+        sleepTimeBar.text = sleepTime
+        
     }
     
     func setupDaylyChart() {
@@ -106,7 +122,7 @@ class DashbordController: UIViewController {
     }
     
     func dailyWalkingSteps(steps: Int) {
-        dashbordHelper.dailyRateInPercent(steps: steps) { (walkingPercentage) in
+        stepsHelper.dailyRateInPercent(steps: steps) { (walkingPercentage) in
             let percent = CGFloat(walkingPercentage)
             self.runningProgress.startAngle = CGFloat((Double(walkingPercentage) * 3.6) - 90)
             self.runningDay.startAngle = CGFloat((Double(walkingPercentage) * 3.6) - 90)
@@ -117,7 +133,7 @@ class DashbordController: UIViewController {
     }
     
     func dailyRunningSteps(steps: Int) {
-        dashbordHelper.dailyRateInPercent(steps: steps) { (runningSteps) in
+        stepsHelper.dailyRateInPercent(steps: steps) { (runningSteps) in
             let percent = CGFloat(runningSteps)
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {

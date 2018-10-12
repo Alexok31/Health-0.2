@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension DashbordController {
+extension StepsController {
     
     func animationCalendarView(_ sender: UIPanGestureRecognizer) {
         if sender.state == .began || sender.state == .changed {
@@ -19,7 +19,7 @@ extension DashbordController {
                 if calendarBottom.constant < -40 {
                     UIView.animate(withDuration: 0.5, animations: {
                         self.calendarBottom.constant -= translation / 5
-                        self.topBarConstraint.constant += translation / 15
+                        self.topBarConstraint.constant += translation / 10
                         self.view.layoutIfNeeded()
                     })
                 }
@@ -44,7 +44,7 @@ extension DashbordController {
                     self.walkingTopConstraint.constant = 10
                     self.runningTopConstraint.constant = 10
                     self.runningRightConstraint.constant = -60
-                    self.topBarConstraint.constant = -60
+                    self.topBarConstraint.constant = -80
                     self.progressTopConstraint.constant = -80
                     self.numberStepsTopConstraint.constant = 10
                     self.numberOfStepsWalking.alpha = 0
@@ -53,6 +53,7 @@ extension DashbordController {
                     self.runningTitle.alpha = 0
                     self.runningProgress.alpha = 0
                     self.pressureView.alpha = 0
+                    self.barMenuView.alpha = 0
                     self.dayliChart.alpha = 1
                     self.view.layoutIfNeeded()
                 })
@@ -64,15 +65,16 @@ extension DashbordController {
                     self.walkingTopConstraint.constant = 355
                     self.runningTopConstraint.constant = 355
                     self.runningRightConstraint.constant = 20
-                    self.progressTopConstraint.constant = 65
-                    self.numberStepsTopConstraint.constant = 153
+                    self.progressTopConstraint.constant = 80
+                    self.numberStepsTopConstraint.constant = 168
                     self.topBarConstraint.constant = 0
                     self.numberOfStepsWalking.alpha = 1
                     self.walkingTitle.alpha = 1
                     self.numberOfStepsRunning.alpha = 1
                     self.runningTitle.alpha = 1
                     self.runningProgress.alpha = 1
-                     self.pressureView.alpha = 1
+                    self.pressureView.alpha = 1
+                    self.barMenuView.alpha = 1
                     self.dayliChart.alpha = 0
                     self.view.layoutIfNeeded()
                 })
@@ -103,7 +105,7 @@ extension DashbordController {
         }
     }
     
-    func animationFadeOutLabel(_ sender: UIPanGestureRecognizer, labelfFade1: UILabel, labelfFade2: UILabel, labelfFade3: UILabel, labelfFade4: UILabel, constraint: NSLayoutConstraint, startConstant: CGFloat, endConstant: CGFloat, viewFade1: UIView, viewFade2: UIView, viewFade3: UIView)  {
+    func animationFadeOutLabel(_ sender: UIPanGestureRecognizer, labelfFade1: UILabel, labelfFade2: UILabel, labelfFade3: UILabel, labelfFade4: UILabel, constraint: NSLayoutConstraint, startConstant: CGFloat, endConstant: CGFloat, viewFade1: UIView, viewFade2: UIView, viewFade3: UIView, viewFade4: UIView)  {
         if sender.state == .began || sender.state == .changed {
             let translation = sender.translation(in: self.view).y
             
@@ -117,7 +119,8 @@ extension DashbordController {
                         labelfFade4.alpha -= 0.04
                         viewFade1.alpha -= 0.02
                         viewFade3.alpha -= 0.05
-                        viewFade2.alpha += 0.04
+                        viewFade4.alpha -= 0.08
+                        viewFade2.alpha += 0.01
                         self.view.layoutIfNeeded()
                     })
                 }
@@ -126,7 +129,7 @@ extension DashbordController {
                     UIView.animate(withDuration: 0.5, animations: {
                         viewFade1.alpha += 0.02
                         viewFade3.alpha += 0.05
-                        viewFade2.alpha -= 0.04
+                        viewFade2.alpha -= 0.01
                         self.view.layoutIfNeeded()
                     })
                 }

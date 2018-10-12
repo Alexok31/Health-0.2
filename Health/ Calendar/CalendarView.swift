@@ -9,7 +9,7 @@
 import Foundation
 import FSCalendar
 
-extension DashbordController : FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance {
+extension StepsController : FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance {
     
 
     
@@ -23,12 +23,16 @@ extension DashbordController : FSCalendarDataSource, FSCalendarDelegate, FSCalen
                         let runningSteps = i.physiologicalData.runningSteps
                         let lowerPressure = i.physiologicalData.lowerPressure
                         let upperPressure = i.physiologicalData.upperPressure
+                        let caloriesBurnedBar = i.physiologicalData.caloriesBurnedBar
+                        let coefficientBar = i.physiologicalData.coefficientBar
+                        let wakingTimeBar = i.physiologicalData.wakingTimeBar
+                        let sleepTimeBar = i.physiologicalData.sleepTimeBar
                         self.stepsChartData.dayWalkingSteps = (i.physiologicalData.dayWalkingSteps)
                         self.stepsChartData.dayRunningSteps = (i.physiologicalData.dayRunningSteps)
                         self.dayliChart.reload()
                         self.dailyWalkingSteps(steps: walkingSteps!)
                         self.dailyRunningSteps(steps: runningSteps!)
-                        self.setupLabel(walkingSteps: walkingSteps!, runningSteps: runningSteps!, lowerPressure: lowerPressure!, upperPressure: upperPressure!)
+                        self.setupLabel(walkingSteps: walkingSteps!, runningSteps: runningSteps!, lowerPressure: lowerPressure!, upperPressure: upperPressure!, caloriesBurned: caloriesBurnedBar, coefficient: coefficientBar!, wakingTime: wakingTimeBar!, sleepTime: sleepTimeBar!)
                     }
                 }
             }
